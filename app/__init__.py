@@ -8,6 +8,10 @@ from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 
+from .training_module import training_controller
+
+app.register_blueprint(training_controller)
+
 @app.route('/env', methods=['GET'])
 def view_config():
     return config
