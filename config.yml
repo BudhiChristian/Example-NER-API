@@ -3,3 +3,7 @@ runConfigurations:
   port: 5310
 trainingDetails:
   csvLocation: C:/Users/Cjbud/Documents/Projects/training_data/ner_dataset.csv
+  spacyModelLocation: C:/Users/Cjbud/Documents/Projects/models/spacy_model
+  epochs: 10
+  batchSize: 10
+  progressDisplay: 40

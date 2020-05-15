@@ -3,9 +3,8 @@ import random
 import spacy
 from spacy.util import minibatch
 
-epochs = 10
-batch_size = 10
-progress_size = 40
+from . import spacy_model_location, epochs, batch_size, progress_size
+
 
 def train_model(training_data, labels):
     model = spacy.blank('en')
@@ -29,10 +28,13 @@ def train_model(training_data, labels):
             for idx, batch in enumerate(batches):
                 texts, annotations = zip(*batch)
                 model.update(texts, annotations, sgd=optimizer, drop=0.35, losses=losses)
-                __print_progress((idx*batch_size)+len(batch), len(training_data))
+                __print_progress((idx*batch_size)+len(batch), len(training_data), losses)
             print('\nLosses', losses)
 
-def __print_progress(current, total):
+    model.meta['name'] = 'sample_spacy_model'
+    model.to_disk(spacy_model_location)
+
+def __print_progress(current, total, losses):
     num_complete = math.floor(progress_size * (current/total))
     num_remaining = progress_size - num_complete
 
@@ -42,6 +44,6 @@ def __print_progress(current, total):
         progress = ("=" * (num_complete - 1))+">"
     remaining = "_" * num_remaining
 
-    print(f"{current}/{total} complete [{progress}{remaining}]\r", end="")
+    print(f"{current}/{total} complete [{progress}{remaining}] Losses: {losses}\r", end="")
     
 
