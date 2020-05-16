@@ -9,8 +9,10 @@ from werkzeug.exceptions import HTTPException
 app = Flask(__name__)
 
 from .spacy_training_module import spacy_training_controller
+from .spacy_tagging_module import spacy_tagging_controller
 
 app.register_blueprint(spacy_training_controller)
+app.register_blueprint(spacy_tagging_controller)
 
 @app.route('/env', methods=['GET'])
 def view_config():
