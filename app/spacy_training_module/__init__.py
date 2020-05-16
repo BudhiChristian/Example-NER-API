@@ -7,4 +7,4 @@ epochs = config['trainingDetails']['epochs']
 batch_size = config['trainingDetails']['batchSize']
 progress_size = config['trainingDetails']['progressDisplay']
 
-from .controller import training_controller
+from .controller import spacy_training_controller

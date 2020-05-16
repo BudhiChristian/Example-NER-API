@@ -5,5 +5,5 @@ trainingDetails:
   csvLocation: C:/Users/Cjbud/Documents/Projects/training_data/ner_dataset.csv
   spacyModelLocation: C:/Users/Cjbud/Documents/Projects/models/spacy_model
   epochs: 10
-  batchSize: 10
+  batchSize: 32
   progressDisplay: 40
