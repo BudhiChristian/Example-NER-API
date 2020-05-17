@@ -11,8 +11,21 @@ def refresh():
 
 
 def tag_text(text: str):
-    global model
     doc = model(text)
-    
-    for ent in doc.ents:
-        print(ent.label_, ent.text, ent.start, ent.end)
+
+    return {
+        "sentence": text,
+        "entities": transorm(doc.ents)
+    }
+
+
+def transorm(entities):
+    entity_list = list()
+    for entity in entities:
+        entity_list.append({
+            'text': entity.text,
+            'start': entity.start_char,
+            'end': entity.end_char,
+            'label': entity.label_
+        })
+    return entity_list
