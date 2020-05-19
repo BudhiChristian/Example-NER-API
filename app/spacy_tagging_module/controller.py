@@ -11,3 +11,8 @@ def tag():
         abort(400, 'parameter "query" required')
     res = tag_text(query)
     return res
+
+@spacy_tagging_controller.route('/refresh', methods=['POST'])
+def refresh_spacy_model():
+    refresh()
+    return 'model refreshed'
